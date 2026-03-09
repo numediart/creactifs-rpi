@@ -1,0 +1,182 @@
+%% Copyright 2018 Francois Marelli <fran.marelli@gmail.com>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Marelli Francois
+
+\mode<presentation>
+
+
+
+\newlength{\logoht}
+\newif\if@secondary
+
+\usepackage{calc}
+\newlength{\titlealign}
+\if@standardtitle
+  \setlength{\titlealign}{0pt}
+\else
+  \setlength{\titlealign}{\sidebarwd + 12pt}
+\fi
+\newlength{\titlewd}
+\setlength{\titlewd}{\paperwidth - \titlealign}
+
+\def\maketitle{
+  \begingroup
+  \ifbeamer@inframe
+    \titlepage
+  \else
+    \frame[plain]{\titlepage}
+  \fi
+  \endgroup
+}
+
+\defbeamertemplate*{title page}{mfrancois}
+{
+  \setcounter{framenumber}{0}
+  \begin{textblock*}{\titlewd}(0pt,0pt)
+    \ifdim\beamer@paperwidth=16.00cm
+    \else
+      \hspace{-25pt}
+    \fi
+    \if@standardtitle
+    \else
+      \includegraphics[height=\paperheight]{\mfrancois@titleimage}
+    \fi
+  \end{textblock*}
+
+  \begin{textblock*}{\titlewd}[0, 0.38](\titlealign, .5 \paperheight-21pt)
+    \begin{beamercolorbox}{title}
+      \if@standardtitle
+        \centering
+      \fi
+      \usebeamerfont{title}\inserttitle
+      \ifx\insertsubtitle\@empty
+      \else
+        \vspace{6pt}
+        \par\usebeamerfont{subtitle}\insertsubtitle
+      \fi
+    \end{beamercolorbox}
+
+    \vspace{8pt}
+    \begin{beamercolorbox}{author}
+      \if@standardtitle
+        \centering
+      \fi
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \ifx\mainaffil\empty\else
+      \begin{beamercolorbox}{author}
+        \if@standardtitle
+          \centering
+        \fi
+        \usebeamerfont{date}\usebeamercolor[fg]{}
+        \mainaffil
+      \end{beamercolorbox}
+    \fi
+    \vspace{2pt}
+    \begin{beamercolorbox}{author}
+      \if@standardtitle
+        \centering
+      \fi
+      \usebeamerfont{date}\usebeamercolor[fg]{date}
+      \insertshortdate
+    \end{beamercolorbox}
+    \ifx\insertextras\empty\else
+      \vspace{18pt}
+      \begin{beamercolorbox}{author}
+        \if@standardtitle
+          \centering
+        \fi
+        \usebeamerfont{date}\usebeamercolor[fg]{date}
+        \insertextras
+      \end{beamercolorbox}
+    \fi
+  \end{textblock*}
+
+  \if@standardtitle
+    \begin{textblock*}{\titlewd}[0,1](0pt, \paperheight-12pt)
+      \centering
+      \ifx\mfrancois@secondarylogo\empty
+        \setlength{\logoht}{25pt}
+      \else
+        \setlength{\logoht}{20pt}
+        \includegraphics[height=\logoht]{\mfrancois@secondarylogo}
+        \hspace{.75 \logoht}
+      \fi
+      \includegraphics[height=\logoht]{\mfrancois@themePath/main-logo}
+    \end{textblock*}
+  \else
+    \begin{textblock*}{\titlewd}[1,1](\paperwidth-12pt, \paperheight-12pt)
+      \hfill
+      \ifx\mfrancois@secondarylogo\empty
+        \setlength{\logoht}{25pt}
+      \else
+        \setlength{\logoht}{20pt}
+        \includegraphics[height=\logoht]{\mfrancois@secondarylogo}
+        \hspace{.75 \logoht}
+      \fi
+      \includegraphics[height=\logoht]{\mfrancois@themePath/main-logo}
+    \end{textblock*}
+  \fi
+
+}
+
+\defbeamertemplate*{section page}{mfrancois}{
+  \vfill
+  \begin{beamercolorbox}{section title}
+    \centering
+    \usebeamerfont{section title}\insertsection
+  \end{beamercolorbox}
+  \vfill
+}
+
+\defbeamertemplate*{itemize item}{mfrancois}{
+  \if@showbullets
+    \raise1pt\hbox{\textbullet}
+  \fi
+}
+
+\defbeamertemplate*{itemize subitem}{mfrancois}{
+  \if@showbullets
+    \raise1pt\hbox{$\circ$}
+  \fi
+}
+
+\defbeamertemplate*{itemize subsubitem}{mfrancois}{
+  \if@showbullets
+    \hbox{--}
+  \fi
+}
+
+\defbeamertemplate*{section in toc}{mfrancois}{
+  \usebeamercolor[fg]{item}
+  \inserttocsectionnumber.
+  \usebeamercolor[fg]{normal text}
+  \kern1.25ex\inserttocsection\par}
+
+\defbeamertemplate*{subsection in toc}{mfrancois}{
+  \hspace\leftmargini
+  \usebeamercolor[fg]{item}
+  \inserttocsectionnumber.\inserttocsubsectionnumber
+  \usebeamercolor[fg]{normal text}
+  \kern1.25ex\inserttocsubsection\par}
+
+\defbeamertemplate*{subsubsection in toc}{mfrancois}{
+  \hspace\leftmargini
+  \hspace\leftmarginii
+  \usebeamercolor[fg]{item}
+  \inserttocsectionnumber.\inserttocsubsectionnumber.
+  \inserttocsubsubsectionnumber
+  \usebeamercolor[fg]{structure}
+  \kern1.25ex\inserttocsubsubsection\par}
+
+\mode<all>

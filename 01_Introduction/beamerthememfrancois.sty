@@ -1,0 +1,102 @@
+%% Copyright 2018 Francois Marelli <fran.marelli@gmail.com>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Marelli Francois
+
+\mode<presentation>
+
+\newif\if@showtotal
+\@showtotaltrue
+\DeclareOption{hidetotal}{\@showtotalfalse}
+
+\newif\if@showslides
+\@showslidestrue
+\DeclareOption{hidenumbers}{\@showslidesfalse}
+
+\newif\if@showname
+\@shownametrue
+\DeclareOption{hidename}{\@shownamefalse}
+
+\newif\if@showbullets
+\@showbulletstrue
+\DeclareOption{hidebullets}{\@showbulletsfalse}
+
+\newif\if@showfootline
+\@showfootlinetrue
+\DeclareOption{hidefootline}{\@showfootlinefalse}
+
+\newif\if@sidebar
+\@sidebarfalse
+\DeclareOption{sidebar}{\@sidebartrue}
+
+\newif\if@bold
+\@boldfalse
+\DeclareOption{bold}{\@boldtrue}
+
+\newif\if@thin
+\@thinfalse
+\DeclareOption{thin}{\@thintrue}
+
+\newif\if@hugetitle
+\@hugetitlefalse
+\DeclareOption{hugetitle}{\@hugetitletrue}
+
+\newif\if@standardtitle
+\@standardtitlefalse
+\DeclareOption{standardtitle}{\@standardtitletrue}
+
+\ProcessOptions
+
+\newcommand{\setsecondarylogo}[1]{\def\mfrancois@secondarylogo{#1}}
+\setsecondarylogo{}
+
+\newcommand{\setsidebarlogo}[1]{\def\mfrancois@sidebarlogo{#1}}
+\setsidebarlogo{\mfrancois@themePath/sidebar-rect.pdf}
+
+\newcommand{\settitleimage}[1]{\def\mfrancois@titleimage{#1}}
+\settitleimage{\mfrancois@themePath/title-side}
+
+\DeclareOptionBeamer{themePath}{
+  \def\mfrancois@themePath{#1}}
+\ExecuteOptionsBeamer{themePath=mfrancois_beamer_theme}
+
+\def\mfrancois@require#1{\RequirePackage{#1}}
+\def\mfrancois@requireTheme#1{\mfrancois@require{\mfrancois@themePath/beamer#1thememfrancois}}
+
+\mfrancois@requireTheme{font}
+\mfrancois@requireTheme{color}
+\mfrancois@requireTheme{outer}
+\mfrancois@requireTheme{inner}
+
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{ifthen}
+\usepackage[absolute,overlay]{textpos}
+\setbeamertemplate{bibliography item}{}
+
+\newcommand{\mainaffil}{}
+\newcommand{\shortaffil}{}
+\newcommand{\affiliation}[2][]{
+  \renewcommand{\mainaffil}{#2}
+  \ifthenelse{\equal{#1}{}}{
+    \renewcommand{\shortaffil}{#2}
+  }{
+    \renewcommand{\shortaffil}{#1}
+  }
+}
+
+\newcommand{\insertextras}{}
+\newcommand{\extras}[1]{
+  \renewcommand{\insertextras}{#1}
+}
+
+\mode<all>

@@ -1,0 +1,134 @@
+%% Copyright 2018 Francois Marelli <fran.marelli@gmail.com>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Marelli Francois
+
+\usepackage{calc}
+\mode<presentation>
+
+% Top spacing above title (even if no title)
+\defbeamertemplate*{headline}{mfrancois}{\vspace{16pt}}
+
+\newlength{\footlinedp}
+\setlength{\footlinedp}{2mm}
+\newlength{\footlineht}
+\setlength{\footlineht}{\footlinedp+1mm}
+\newlength{\hiddenfootlineht}
+\setlength{\hiddenfootlineht}{\footlinedp+1mm}
+
+\newlength{\footlinesk}
+\setlength{\footlinesk}{1.6mm}
+
+\newlength{\numberwd}
+\setlength{\numberwd}{20pt}
+
+\newlength{\sidebarwd}
+\newlength{\sidebaralign}
+\newlength{\sidebartext}
+\newlength{\footlinetitlewd}
+\newlength{\footlineauthorwd}
+
+\ifdim\beamer@paperwidth=16.00cm
+  \setlength{\sidebarwd}{100pt}
+  \setlength{\sidebaralign}{16pt}
+  \setlength{\footlineauthorwd}{200pt}
+  \setlength{\footlinetitlewd}{180pt}
+\else
+  \setlength{\sidebarwd}{85pt}
+  \setlength{\sidebaralign}{12pt}
+  \setlength{\footlineauthorwd}{170pt}
+  \setlength{\footlinetitlewd}{130pt}
+\fi
+\setlength{\sidebartext}{\sidebarwd - \sidebaralign - 5pt}
+
+\defbeamertemplate*{footline}{mfrancois}
+{
+  \if@showfootline
+    \vskip2pt
+    \begin{beamercolorbox}[wd=\paperwidth,dp=\footlinedp,ht=\footlineht,
+        leftskip=\footlinesk,rightskip=\footlinesk]{footline}
+      \usebeamerfont{title in head/foot}
+      \if@showname
+        \makebox[\footlineauthorwd][l]{\insertshortauthor
+          \ifthenelse{\equal{\shortaffil}{}}{}{
+            \hspace*{.5ex}--\hspace*{.5ex} \shortaffil
+          }
+          \hspace*{1ex}$\vert$\hspace*{1ex} \insertshorttitle}
+        \makebox[\footlinetitlewd][l]{\insertsection}
+        \hfill
+      \else
+        % \hfill
+        \makebox[\footlinetitlewd+\footlineauthorwd][l]{\insertsection}
+        \hfill
+      \fi
+      \if@showslides
+        \makebox[\numberwd][r]{
+          \insertframenumber
+          \if@showtotal
+            /\inserttotalframenumber
+          \fi
+        }
+        \hspace{.5pt}
+      \fi
+    \end{beamercolorbox}
+  \else
+    \if@showslides
+      \begin{beamercolorbox}[wd=\paperwidth,dp=\footlinedp,ht=\hiddenfootlineht,
+          leftskip=\footlinesk,rightskip=\footlinesk]{hiddenfootline}
+        \usebeamerfont{title in head/foot}
+        \hfill
+        \makebox[\numberwd][r]{
+          \insertframenumber
+          \if@showtotal
+            /\inserttotalframenumber
+          \fi
+        }
+        \hspace{2pt}
+      \end{beamercolorbox}
+    \else
+      \vskip2pt
+    \fi
+  \fi
+}
+
+\defbeamertemplate*{frametitle}{mfrancois}
+{
+  \usebeamerfont{frametitle}
+  \strut\insertframetitle\strut
+
+  \usebeamercolor[fg]{framesubtitle}
+  \usebeamerfont{framesubtitle}
+  \ifx\insertframesubtitle\@empty\else\strut\insertframesubtitle\strut\fi
+}
+
+\defbeamertemplate*{navigation symbols}{mfrancois}{}
+
+\defbeamertemplate*{frametitle continuation}{mfrancois}{
+  (\insertcontinuationcountroman)
+}
+
+\if@sidebar
+  \useoutertheme[left, height=0pt, width=\sidebartext]{sidebar}
+  \setbeamersize{sidebar width left = \sidebarwd}
+  \setbeamertemplate{sidebar left}
+  {
+    \includegraphics[width=\sidebarwd]{\mfrancois@sidebarlogo}
+    \par
+    \vspace{10pt}
+    \hspace{\sidebaralign}
+    \insertverticalnavigation{\beamer@sidebarwidth}
+  }
+  \setbeamertemplate{sidebar canvas left}[vertical
+    shading][bottom=mfrancois@lightbg,top=mfrancois@lightbg]
+\fi
+
+\mode<all>
