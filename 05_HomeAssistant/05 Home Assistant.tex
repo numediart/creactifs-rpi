@@ -357,7 +357,7 @@ podman run -d \
     \alert{Accessible depuis un autre appareil sur le même réseau!}
 
     \begin{itemize}
-        \item \texttt{http://hostname:8123} ou
+        \item \texttt{http://hostname.local:8123} ou
               \texttt{http://adresse\_ip:8123}
         \item utiliser \cmd{hostname} ou \cmd{ip}\args{ a} pour trouver les
               informations nécessaires
@@ -401,7 +401,7 @@ podman run -d \
 
         \item Configuration de MediaMTX pour lire la caméra du Raspberry Pi
               \begin{itemize}
-                  \item ouvrir \texttt{\textasciitilde/mediamtx.yml} (avec
+                  \item ouvrir \texttt{\textasciitilde/mediamtx/mediamtx.yml} (avec
                         \cmd{nano}),
                   \item ajouter a la fin, dans \texttt{paths} (\alert{attention,
                             2 espaces
@@ -454,7 +454,7 @@ podman run -d \
 \end{frame}
 
 \begin{frame}[fragile]{Création d'un service pour MediaMTX}
-    Créer \texttt{/etc/systemd/system/mediamtx.service} avec \cmd{sudo nano}
+    Créer \texttt{/etc/systemd/system/mediamtx.service} (avec \cmd{sudo nano})
 
     \begin{lstlisting}
     [Unit]
@@ -486,6 +486,10 @@ podman run -d \
 
     \bigskip
     Activez le service \texttt{mediamtx}, démarrez-le et vérifiez son statut
+
+    \bigskip
+
+    \alert{Attention}: le service ne peut pas se lancer si MediaMTX tourne dans un terminal!
 \end{frame}
 
 \begin{frame}[fragile]{Création d'un service pour Home Assistant}
@@ -498,6 +502,7 @@ podman run -d \
               \cmd{mkdir}\args{ -p \textasciitilde/.config/containers/systemd}
         \item créer le fichier services pour Home Assistant:
               %\begin{noindent}
+
               \cmd{nano}\args{
                   \textasciitilde/.config/containers/systemd/homeassistant.container}
             %\end{noindent}
