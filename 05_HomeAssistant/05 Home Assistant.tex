@@ -401,7 +401,8 @@ podman run -d \
 
         \item Configuration de MediaMTX pour lire la caméra du Raspberry Pi
               \begin{itemize}
-                  \item ouvrir \texttt{\textasciitilde/mediamtx/mediamtx.yml} (avec
+                  \item ouvrir \texttt{\textasciitilde/mediamtx/mediamtx.yml}
+                        (avec
                         \cmd{nano}),
                   \item ajouter a la fin, dans \texttt{paths} (\alert{attention,
                             2 espaces
@@ -489,7 +490,8 @@ podman run -d \
 
     \bigskip
 
-    \alert{Attention}: le service ne peut pas se lancer si MediaMTX tourne dans un terminal!
+    \alert{Attention}: le service ne peut pas se lancer si MediaMTX tourne dans
+    un terminal!
 \end{frame}
 
 \begin{frame}[fragile]{Création d'un service pour Home Assistant}
@@ -540,8 +542,8 @@ podman run -d \
     \begin{verbatim}
     sudo loginctl enable-linger rpi
     systemctl --user daemon-reload
-    systemctl --user start homeassistant.container
-    systemctl --user status homeassistant.container
+    systemctl --user start homeassistant
+    systemctl --user status homeassistant
     \end{verbatim}
 
     Redémarrez le Raspberry Pi et vérifiez que Home Assistant et MediaMTX sont

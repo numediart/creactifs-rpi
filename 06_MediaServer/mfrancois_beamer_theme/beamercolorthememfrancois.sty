@@ -1,0 +1,66 @@
+%% Copyright 2018 Francois Marelli <fran.marelli@gmail.com>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Marelli Francois
+
+\mode<presentation>
+
+% Define colors
+\definecolor{mfrancois@polyblue}{HTML}{004c93}
+\definecolor{mfrancois@umonsred}{HTML}{c40d42}
+\definecolor{mfrancois@umonsgrey}{HTML}{939598}
+
+\definecolor{mfrancois@lightbg}{HTML}{e4ebf1}
+\definecolor{mfrancois@text}{gray}{0.15}
+
+\definecolor{mfrancois@green}{HTML}{5B8C5A}
+\definecolor{mfrancois@orange}{HTML}{ee7b30}
+
+% Assign colors to be used
+% Main colors
+\colorlet{mfrancois@main}{mfrancois@polyblue}
+\colorlet{mfrancois@footline}{mfrancois@umonsred}
+\colorlet{mfrancois@lightalert}{mfrancois@orange}
+
+% Blocks
+\colorlet{mfrancois@block}{mfrancois@polyblue}
+\colorlet{mfrancois@exampleblock}{mfrancois@umonsgrey}
+\colorlet{mfrancois@emphblock}{mfrancois@umonsred}
+
+\colorlet{mfrancois@codekeyword}{mfrancois@main}
+\colorlet{mfrancois@codecomment}{mfrancois@green}
+\colorlet{mfrancois@codestring}{mfrancois@orange}
+
+% Set beamer colors
+\setbeamercolor{structure}{fg=mfrancois@main}
+\setbeamercolor{footline}{fg=mfrancois@lightbg,bg=mfrancois@footline}
+\setbeamercolor{hiddenfootline}{fg=mfrancois@main,bg=}
+\setbeamercolor{sidebar}{bg=mfrancois@lightbg}
+\setbeamercolor{white}{fg=mfrancois@main,bg=white}
+
+\setbeamercolor{normal text}{fg=mfrancois@text}
+\setbeamercolor*{item}{fg=mfrancois@main}
+\setbeamercolor*{footnote mark}{fg=mfrancois@main}
+\setbeamercolor*{date}{fg=mfrancois@exampleblock}
+\setbeamercolor{framesubtitle}{fg=mfrancois@exampleblock}
+\setbeamercolor{alerted text}{fg=mfrancois@lightalert}
+
+\setbeamercolor{block body alerted}{bg=mfrancois@lightbg}
+\setbeamercolor{block body}{bg=mfrancois@lightbg}
+\setbeamercolor{block body example}{bg=mfrancois@lightbg}
+
+\setbeamercolor{block title alerted}{fg=white,bg=mfrancois@emphblock}
+\setbeamercolor{block title}{fg=white, bg=mfrancois@block}
+\setbeamercolor{block title example}{fg=white,bg=mfrancois@exampleblock}
+
+\mode
+<all>
